@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
         $administrator = User::create([
         	'username' => 'Administrator',
             'email' => 'admin@admin.com',
-	        'password' => '$2y$10$u0S9BfFehQva6/5SvoeJcuZMhPXI30LAJmzF/YuxCbPc6dL1N715O', //adminadmin
+	        'password' => '$2y$10$4hNXFhymX77gq1e4yC3yU.JOgPWnIoooovcm3cK0D/D6ZAUK6MUPm',
 	        'role_id' => 1,
         ]);
 

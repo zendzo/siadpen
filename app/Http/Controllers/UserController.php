@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('administrator.user.index', compact('users'));
+        return view($this->viewLocation('administrator.user.index'), compact('users'));
     }
 
     /**

@@ -37,7 +37,21 @@ class RuangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $ruang = Ruang::create($request->all());
+
+            if ($ruang) {
+                return redirect()->back()
+                ->with('message', 'Data Telah Tersimpan!')
+                ->with('status','success')
+                ->with('type','success');
+            }
+        }catch(\Exception $e){
+            return redirect()->back()
+                ->with('message', $e->getMessage())
+                ->with('status','error')
+                ->with('type','error');
+        }
     }
 
     /**
@@ -71,7 +85,21 @@ class RuangController extends Controller
      */
     public function update(Request $request, Ruang $ruang)
     {
-        //
+        try{
+            $ruang->update($request->all());
+
+            if ($ruang) {
+                return redirect()->back()
+                ->with('message', 'Data Telah Tersimpan!')
+                ->with('status','success')
+                ->with('type','success');
+            }
+        }catch(\Exception $e){
+            return redirect()->back()
+                ->with('message', $e->getMessage())
+                ->with('status','error')
+                ->with('type','error');
+        }
     }
 
     /**

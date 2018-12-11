@@ -1,4 +1,4 @@
-<li class="{{ active(['admin.user.*','admin.role.*','admin.siswa.*','admin.ruang.*','admin.kelas.*','admin.tingkat.*'],'opened active') }}">
+<li class="{{ active(['admin.user.*','admin.role.*','admin.siswa.*','admin.ruang.*','admin.kelas.*','admin.tingkat.*','admin.guru.*'],'opened active') }}">
     <a href="dashboard-1.html">
       <i class="linecons-doc"></i>
       <span class="title">Master Data</span>
@@ -19,8 +19,8 @@
           <i class="linecons-graduation-cap"></i><span class="title"> Siswa</span>
         </a>
       </li>
-      <li class="{{ active('admin.role.index') }}">
-        <a href="{{ route('admin.role.index') }}">
+      <li class="{{ active('admin.guru.index') }}">
+        <a href="{{ route('admin.guru.index') }}">
           <i class="linecons-pencil"></i><span class="title"> Guru</span>
         </a>
       </li>

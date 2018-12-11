@@ -14,9 +14,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelass = Kelas::all();
 
-        return view($this->viewLocation('administrator.kelas.index'), compact(['kelas']));
+        return view($this->viewLocation('administrator.kelas.index'), compact(['kelass']));
     }
 
     /**
@@ -37,7 +37,21 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $ruang = Kelas::create($request->all());
+
+            if ($ruang) {
+                return redirect()->back()
+                ->with('message', 'Data Telah Tersimpan!')
+                ->with('status','success')
+                ->with('type','success');
+            }
+        }catch(\Exception $e){
+            return redirect()->back()
+                ->with('message', $e->getMessage())
+                ->with('status','error')
+                ->with('type','error');
+        }
     }
 
     /**
@@ -69,9 +83,24 @@ class KelasController extends Controller
      * @param  \App\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
-        //
+        $kelas = Kelas::findOrfail($id);
+        try{
+            $kelas->update($request->all());
+
+            if ($kelas) {
+                return redirect()->back()
+                ->with('message', 'Data Telah Tersimpan!')
+                ->with('status','success')
+                ->with('type','success');
+            }
+        }catch(\Exception $e){
+            return redirect()->back()
+                ->with('message', $e->getMessage())
+                ->with('status','error')
+                ->with('type','error');
+        }
     }
 
     /**

@@ -24,6 +24,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'administrator'], f
 
 	Route::resource('kelas', 'KelasController');
 
+	Route::resource('guru', 'GuruController');
+
 	Route::get('/application-menus',[
 		'as'	=>	'app.menu',
 		'uses'	=>	'Admin\MenuController@index'

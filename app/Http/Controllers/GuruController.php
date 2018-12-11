@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tingkat;
+use App\Guru;
 use Illuminate\Http\Request;
 
-class TingkatController extends Controller
+class GuruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class TingkatController extends Controller
      */
     public function index()
     {
-        $tingkats = Tingkat::all();
+        $gurus = Guru::all();
 
-        return view($this->viewLocation('administrator.tingkat.index'), compact(['tingkats']));
+        return view($this->viewLocation('administrator.guru.index'), compact(['gurus']));
     }
 
     /**
@@ -43,10 +43,10 @@ class TingkatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tingkat  $tingkat
+     * @param  \App\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function show(Tingkat $tingkat)
+    public function show(Guru $guru)
     {
         //
     }
@@ -54,10 +54,10 @@ class TingkatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tingkat  $tingkat
+     * @param  \App\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tingkat $tingkat)
+    public function edit(Guru $guru)
     {
         //
     }
@@ -66,10 +66,10 @@ class TingkatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tingkat  $tingkat
+     * @param  \App\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tingkat $tingkat)
+    public function update(Request $request, Guru $guru)
     {
         //
     }
@@ -77,10 +77,10 @@ class TingkatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tingkat  $tingkat
+     * @param  \App\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tingkat $tingkat)
+    public function destroy(Guru $guru)
     {
         //
     }

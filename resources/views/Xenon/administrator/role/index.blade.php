@@ -58,7 +58,7 @@
     </table>
     <div class="vspacer v3"></div>
     <a href="#" onclick="jQuery('#modal-2').modal('show');" class="btn btn-info icon">
-      <i class="fa fa-plus"></i><span> Add User</span>
+      <i class="fa fa-plus"></i><span> Add Role</span>
     </a>
     @include('Xenon.administrator.role.create_modal')
   </div>

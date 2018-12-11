@@ -5,7 +5,7 @@
 				
   <div class="panel panel-default">
     <d iv class="panel-heading">
-      <h3 class="panel-title">{{ config('app.name') }} - Ruang</h3>
+      <h3 class="panel-title">{{ config('app.name') }} - Data Guru</h3>
       
       <div class="panel-options">
         <a href="#">
@@ -31,22 +31,27 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Nama Ruangan</th>
-          <th>Action</th>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th>Alamat</th>
+          <th>Telp</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       
       <tbody>
-        @foreach ($ruangs as $ruang)
+        @foreach ($gurus as $guru)
             <tr>
-              <td>{{ $ruang->id }}</td>
-              <td>{{ $ruang->name }}</td>
+              <td>{{ $guru->id }}</td>
+              <td>{{ $guru->code }}</td>
+              <td>{{ $guru->name }}</td>
+              <td>{{ $guru->address }}</td>
               <td>
-                <a href="#" onclick="jQuery('#modalEdit-{{ $ruang->id }}').modal('show');" class="btn btn-icon btn-blue btn-xs"><i class="fa fa-edit"></i></a>
-                @include('Xenon.administrator.ruang.edit_modal')
-                <form method="POST" action="{{ route('admin.role.destroy',$ruang->id) }}" accept-charset="UTF-8" style="display:inline">
-                    @method('DELETE')
-                    @csrf
+                <a href="#" onclick="jQuery('#modalEdit-{{ $guru->id }}').modal('show');" class="btn btn-icon btn-blue btn-xs"><i class="fa fa-edit"></i></a>
+                {{-- @include('Xenon.administrator.guru.edit_modal') --}}
+                <form method="POST" action="{{ route('admin.user.destroy',$guru->id) }}" accept-charset="UTF-8" style="display:inline">
+                    {{ method_field('DELETE') }}
+                    {{ csrf_field() }}
                     <button type="submit" class="btn btn-icon btn-red btn-xs">
                        <i class="fa fa-remove"></i>
                     </button>
@@ -58,9 +63,9 @@
     </table>
     <div class="vspacer v3"></div>
     <a href="#" onclick="jQuery('#modal-2').modal('show');" class="btn btn-info icon">
-      <i class="fa fa-plus"></i><span> Add User</span>
+      <i class="fa fa-plus"></i><span> Input Data</span>
     </a>
-    @include('Xenon.administrator.ruang.create_modal')
+    @include('Xenon.administrator.guru.create_modal')
   </div>
   
 </div>

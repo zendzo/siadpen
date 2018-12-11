@@ -16,6 +16,14 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'administrator'], f
 
 	Route::resource('user', 'UserController');
 
+	Route::resource('siswa', 'SiswaController');
+
+	Route::resource('ruang', 'RuangController');
+
+	Route::resource('tingkat', 'TingkatController');
+
+	Route::resource('kelas', 'KelasController');
+
 	Route::get('/application-menus',[
 		'as'	=>	'app.menu',
 		'uses'	=>	'Admin\MenuController@index'

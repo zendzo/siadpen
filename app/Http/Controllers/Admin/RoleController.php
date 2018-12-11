@@ -22,7 +22,7 @@ class RoleController extends Controller
 
         $page_desc = Lang::get('application.role desc');
 
-        return view('administrator.role.index',compact(['roles','page_title','page_desc']));
+        return view($this->viewLocation('administrator.role.index'),compact(['roles','page_title','page_desc']));
     }
 
     /**
@@ -83,6 +83,15 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrfail($id);
+
+        $role->delete();
+        
+        if ($role) {
+            return redirect()->route('admin.role.index')
+                    ->with('message', 'Data Telah Terhapus!')
+                    ->with('status','success')
+                    ->with('type','success');
+        }
     }
 }

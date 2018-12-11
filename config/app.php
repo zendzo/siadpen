@@ -29,6 +29,10 @@ return [
 
     'auth_template' => env('APP_AUTH_TEMPLATE'),
 
+    /**
+     * Web Application Base Template [AdminLTE, Xenon]
+     */
+    'web_template'  => env('APP_WEB_TEMPLATE'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

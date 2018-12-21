@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Guru;
 use Illuminate\Http\Request;
+use App\Ruang;
+use App\Kelas;
 
 class GuruController extends Controller
 {
@@ -16,7 +18,11 @@ class GuruController extends Controller
     {
         $gurus = Guru::all();
 
-        return view($this->viewLocation('administrator.guru.index'), compact(['gurus']));
+        $ruang = Ruang::all();
+
+        $kelas = Kelas::all();
+
+        return view($this->viewLocation('administrator.guru.index'), compact(['gurus','ruang','kelas']));
     }
 
     /**
@@ -37,7 +43,7 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

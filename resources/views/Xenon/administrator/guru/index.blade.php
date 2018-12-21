@@ -1,5 +1,31 @@
 @extends('layouts.Xenon.master')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('Xenon/assets/js/select2/select2.css') }}">
+<link rel="stylesheet" href="{{ asset('Xenon/assets/js/select2/select2-bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('Xenon/assets/js/multiselect/css/multi-select.css') }}">
+@endsection
+
+@section('script')
+<script src="{{ asset('Xenon/assets/js/select2/select2.min.js') }}"></script>
+<script src="{{ asset('Xenon/assets/js/multiselect/js/jquery.multi-select.js') }}"></script>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($)
+  {
+    $("#select2-ruang,#select2-kelas").select2({
+      placeholder: 'Pilihan Ganda',
+      allowClear: true
+    }).on('select2-open', function()
+    {
+      // Adding Custom Scrollbar
+      $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+    });
+    
+  });
+</script>
+@endsection
+
 @section('content')
 <div class="col-md-12">
 				

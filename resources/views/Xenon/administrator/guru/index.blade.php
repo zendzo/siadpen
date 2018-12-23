@@ -61,7 +61,9 @@
           <th>Nama</th>
           <th>Alamat</th>
           <th>Telp</th>
+          @if (request()->segment(2) !== 'laporan')
           <th>Aksi</th>
+          @endif
         </tr>
       </thead>
       
@@ -70,11 +72,13 @@
             <tr>
               <td>{{ $guru->id }}</td>
               <td>{{ $guru->code }}</td>
-              <td>{{ $guru->name }}</td>
+              <td>{{ $guru->user->fullName }}</td>
               <td>{{ $guru->address }}</td>
+              <td>{{ $guru->phone }}</td>
               <td>
-                <a href="#" onclick="jQuery('#modalEdit-{{ $guru->id }}').modal('show');" class="btn btn-icon btn-blue btn-xs"><i class="fa fa-edit"></i></a>
-                {{-- @include('Xenon.administrator.guru.edit_modal') --}}
+              @if (request()->segment(2) !== 'laporan')
+              <a href="#" onclick="jQuery('#modalEdit-{{ $guru->id }}').modal('show');" class="btn btn-icon btn-blue btn-xs"><i class="fa fa-edit"></i></a>
+                @include('Xenon.administrator.guru.edit_modal')
                 <form method="POST" action="{{ route('admin.user.destroy',$guru->id) }}" accept-charset="UTF-8" style="display:inline">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
@@ -82,16 +86,24 @@
                        <i class="fa fa-remove"></i>
                     </button>
                  </form>
+              @endif
               </td>
             </tr>
         @endforeach
       </tbody>
     </table>
     <div class="vspacer v3"></div>
-    <a href="#" onclick="jQuery('#modal-2').modal('show');" class="btn btn-info icon">
-      <i class="fa fa-plus"></i><span> Input Data</span>
-    </a>
-    @include('Xenon.administrator.guru.create_modal')
+    @if (request()->segment(2) !== 'laporan')
+    <a href="#" onclick="jQuery('#modalGuru').modal('show');" class="btn btn-info icon">
+        <i class="fa fa-plus"></i><span> Input Data</span>
+      </a>
+      @include('Xenon.administrator.guru.create_modal')
+      @else
+      <a href="#" class="btn btn-info icon">
+          <i class="fa fa-print"></i><span> Print</span>
+        </a>
+    @endif
+    
   </div>
   
 </div>

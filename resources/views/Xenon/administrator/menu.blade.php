@@ -41,28 +41,38 @@
       </li>
     </ul>
 </li>
-<li class="{{ active([],'opened active') }}">
-  <a href="dashboard-1.html">
+<li class="{{ active(['admin.pembayaran.create'],'opened active') }}">
+  <a href="#">
     <i class="linecons-wallet"></i>
     <span class="title">Transaksi</span>
   </a>
   <ul>
-    <li class="{{ active('admin.user.index') }}">
-      <a href="{{ route('admin.user.index') }}">
+    <li class="{{ active('admin.pembayaran.create') }}">
+      <a href="{{ route('admin.pembayaran.create') }}">
         <i class="linecons-money"></i><span class="title"> Pembayaran</span>
       </a>
     </li>
   </ul>
 </li>
-<li class="{{ active([],'opened active') }}">
+<li class="{{ active(['admin.pembayaran.index','admin.laporan.*'],'opened active') }}">
   <a href="dashboard-1.html">
     <i class="linecons-note"></i>
     <span class="title">Laporan</span>
   </a>
   <ul>
-    <li class="{{ active('admin.user.index') }}">
-      <a href="{{ route('admin.user.index') }}">
+    <li class="{{ active('admin.pembayaran.index') }}">
+      <a href="{{ route('admin.pembayaran.index') }}">
+        <i class="fa fa-money"></i><span class="title"> Pembayaran</span>
+      </a>
+    </li>
+    <li class="{{ active('admin.laporan.siswa') }}">
+      <a href="{{ route('admin.laporan.siswa') }}">
         <i class="linecons-graduation-cap"></i><span class="title"> Siswa</span>
+      </a>
+    </li>
+    <li class="{{ active('admin.laporan.guru') }}">
+      <a href="{{ route('admin.laporan.guru') }}">
+        <i class="linecons-pencil"></i><span class="title"> Guru</span>
       </a>
     </li>
   </ul>

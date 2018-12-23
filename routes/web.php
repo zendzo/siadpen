@@ -26,6 +26,13 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'administrator'], f
 
 	Route::resource('guru', 'GuruController');
 
+	Route::resource('pembayaran', 'PembayaranController');
+
+	Route::get('laporan/siswa', 'LaporanController@siswa')->name('laporan.siswa');
+
+	Route::get('laporan/guru', 'LaporanController@guru')->name('laporan.guru');
+
+
 	Route::get('/application-menus',[
 		'as'	=>	'app.menu',
 		'uses'	=>	'Admin\MenuController@index'

@@ -38,7 +38,9 @@
           <th>Ruang</th>
           <th>Tahun Ajaran</th>
           <th>Biaya</th>
+          @if (request()->segment(2) !== 'laporan')
           <th>Aksi</th>
+          @endif
         </tr>
       </thead>
       
@@ -47,32 +49,40 @@
             <tr>
               <td>{{ $siswa->id }}</td>
               <td>{{ $siswa->nis }}</td>
-              <td>{{ $siswa->name }}</td>
+              <td>{{ $siswa->user->fullName }}</td>
               <td>{{ $siswa->tingkat->name }}</td>
               <td>{{ $siswa->kelas->name }}</td>
               <td>{{ $siswa->ruang->name }}</td>
               <td>{{ $siswa->registered_at }}</td>
               <td>{{ $siswa->biaya }}</td>
               <td>
-                <a href="#" onclick="jQuery('#modalEdit-{{ $siswa->id }}').modal('show');" class="btn btn-icon btn-blue btn-xs"><i class="fa fa-edit"></i></a>
-                @include('Xenon.administrator.siswa.edit_modal')
-                <form method="POST" action="{{ route('admin.user.destroy',$siswa->id) }}" accept-charset="UTF-8" style="display:inline">
-                    {{ method_field('DELETE') }}
-                    {{ csrf_field() }}
-                    <button type="submit" class="btn btn-icon btn-red btn-xs">
-                       <i class="fa fa-remove"></i>
-                    </button>
+                  @if (request()->segment(2) !== 'laporan')
+                  <a href="#" onclick="jQuery('#modalEdit-{{ $siswa->id }}').modal('show');" class="btn btn-icon btn-blue btn-xs"><i class="fa fa-edit"></i></a>
+                  @include('Xenon.administrator.siswa.edit_modal')
+                  <form method="POST" action="{{ route('admin.user.destroy',$siswa->id) }}" accept-charset="UTF-8" style="display:inline">
+                      {{ method_field('DELETE') }}
+                      {{ csrf_field() }}
+                      <button type="submit" class="btn btn-icon btn-red btn-xs">
+                        <i class="fa fa-remove"></i>
+                      </button>
                  </form>
+                  @endif
               </td>
             </tr>
         @endforeach
       </tbody>
     </table>
     <div class="vspacer v3"></div>
-    <a href="#" onclick="jQuery('#modal-2').modal('show');" class="btn btn-info icon">
-      <i class="fa fa-plus"></i><span> Input Data</span>
+    @if (request()->segment(2) !== 'laporan')
+      <a href="#" onclick="jQuery('#modalSiswa').modal('show');" class="btn btn-info icon">
+        <i class="fa fa-plus"></i><span> Input Data</span>
+      </a>
+      @include('Xenon.administrator.siswa.create_modal')
+    @else
+    <a href="#" class="btn btn-info icon">
+      <i class="fa fa-print"></i><span> Print</span>
     </a>
-    @include('Xenon.administrator.siswa.create_modal')
+    @endif
   </div>
   
 </div>

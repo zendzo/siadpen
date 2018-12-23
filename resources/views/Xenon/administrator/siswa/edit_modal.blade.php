@@ -11,6 +11,47 @@
         <form class="form-horizontal"  action="{{ route('admin.siswa.update', $siswa->id) }}" method="POST" enctype="multipart/form-data">
           @csrf
           @method('PATCH')
+          <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+            <label for="username" class="col-sm-2 control-label">Username</label>
+
+            <div class="col-sm-10">
+              <input id="name" name="username" type="text" class="form-control" placeholder="Username" value="{{ $siswa->user->username }}" required>
+
+              @if ($errors->has('username'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('username') }}</strong>
+                  </span>
+              @endif
+            </div>
+          </div><!--form group-->
+
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+
+            <div class="col-sm-10">
+              <input id="name" name="email" type="text" class="form-control" placeholder="Email Siswa" value="{{ $siswa->user->email }}" required>
+
+              @if ($errors->has('email'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('email') }}</strong>
+                  </span>
+              @endif
+            </div>
+          </div><!--form group-->
+
+          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+
+            <div class="col-sm-10">
+              <input id="name" name="password" type="password" class="form-control" placeholder="Password" required>
+
+              @if ($errors->has('password'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('password') }}</strong>
+                  </span>
+              @endif
+            </div>
+          </div><!--form group-->
 
           <div class="form-group{{ $errors->has('nis') ? ' has-error' : '' }}">
             <label for="nis" class="col-sm-2 control-label">NIS</label>
@@ -26,26 +67,87 @@
             </div>
           </div><!--form group-->
 
-          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <label for="name" class="col-sm-2 control-label"> Nama</label>
+          <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+              <label for="first_name" class="col-sm-2 control-label"> Nama Depan</label>
 
               <div class="col-sm-10">
-                <input id="name" name="name" type="text" class="form-control" placeholder="Nama Siswa" value="{{ $siswa->name }}" required>
+                <input id="first_name" name="first_name" type="text" class="form-control" placeholder="Nama Depan" value="{{ $siswa->first_name }}" required>
 
-                @if ($errors->has('name'))
+                @if ($errors->has('first_name'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('first_name') }}</strong>
                     </span>
                 @endif
               </div>
             </div><!--form group-->
+
+            <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+              <label for="last_name" class="col-sm-2 control-label"> Nama Belakang</label>
+
+              <div class="col-sm-10">
+                <input id="last_name" name="last_name" type="text" class="form-control" placeholder="Nama Belakang" value="{{ $siswa->last_name }}" required>
+
+                @if ($errors->has('last_name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('last_name') }}</strong>
+                    </span>
+                @endif
+              </div>
+            </div><!--form group-->
+            
+            <div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
+              <label for="gender_id" class="col-sm-2 control-label"> Jenis Kelamin</label>
+
+              <div class="col-sm-10">
+                <select class="form-control" name="gender_id" id="gender_id">
+                  @foreach ($genders as $item)
+                      <option value="{{ $item->id }}" {{ $item->id === $siswa->gender_id ? 'selected': ''}}>{{ $item->name }}</option>
+                  @endforeach
+                </select>
+
+                @if ($errors->has('gender_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('gender_id') }}</strong>
+                    </span>
+                @endif
+              </div>
+            </div><!--form group-->
+
+            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+              <label for="address" class="col-sm-2 control-label"> Alamat</label>
+
+              <div class="col-sm-10">
+                <input id="address" name="address" type="text" class="form-control" value="{{ $siswa->address }}" required>
+
+                @if ($errors->has('address'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('address') }}</strong>
+                    </span>
+                @endif
+              </div>
+            </div><!--form group-->
+
+            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+              <label for="phone" class="col-sm-2 control-label"> Alamat</label>
+
+              <div class="col-sm-10">
+                <input id="phone" name="phone" type="text" class="form-control" placeholder="No handphone Siswa" value="{{ $siswa->phone }}" required>
+
+                @if ($errors->has('phone'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('phone') }}</strong>
+                    </span>
+                @endif
+              </div>
+            </div><!--form group-->
+            
             <div class="form-group{{ $errors->has('tingkat_id') ? ' has-error' : '' }}">
               <label for="tingkat_id" class="col-sm-2 control-label"> Tingkat</label>
 
               <div class="col-sm-10">
                 <select class="form-control" name="tingkat_id" id="tingkat_id">
                   @foreach ($tingkat as $item)
-                      <option {{ $siswa->tingkat_id === $item->id ? 'selected' : ''  }} value="{{ $item->id }}">{{ $item->name }}</option>
+                      <option value="{{ $item->id }}" {{ $item->id === $siswa->tingkat_id ? 'selected': ''}}>{{ $item->name }}</option>
                   @endforeach
                 </select>
 
@@ -62,7 +164,7 @@
               <div class="col-sm-10">
                 <select class="form-control" name="kelas_id" id="tingkat_id">
                   @foreach ($kelas as $item)
-                      <option {{ $siswa->kelas_id === $item->id ? 'selected' : ''  }} value="{{ $item->id }}">{{ $item->name }}</option>
+                      <option value="{{ $item->id }}" {{ $item->id === $siswa->kelas_id ? 'selected': ''}}>{{ $item->name }}</option>
                   @endforeach
                 </select>
 
@@ -79,7 +181,7 @@
               <div class="col-sm-10">
                 <select class="form-control" name="ruang_id" id="tingkat_id">
                   @foreach ($ruang as $item)
-                      <option {{ $siswa->ruang_id === $item->id ? 'selected' : ''  }} value="{{ $item->id }}">{{ $item->name }}</option>
+                      <option value="{{ $item->id }}" {{ $item->id === $siswa->ruang_id ? 'selected': ''}}>{{ $item->name }}</option>
                   @endforeach
                 </select>
 
@@ -107,7 +209,7 @@
               <label for="registered_at" class="col-sm-2 control-label"> Tahun Masuk</label>
 
               <div class="col-sm-10">
-                <input id="registered_at" name="registered_at" type="text" class="form-control" placeholder="registered_at" value="{{ $siswa->registered_at->format('m-d-Y') }}" required>
+                <input id="registered_at" name="registered_at" type="text" class="form-control" placeholder="registered_at" value="{{ $siswa->registered_at }}" required>
 
                 @if ($errors->has('registered_at'))
                     <span class="help-block">

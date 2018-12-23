@@ -62,9 +62,17 @@
     </table>
     <div class="vspacer v3"></div>
     <a href="#" onclick="jQuery('#modal-2').modal('show');" class="btn btn-info icon">
-      <i class="fa fa-plus"></i><span> Add User</span>
+      <i class="fa fa-plus"></i><span> Input User</span>
     </a>
     @include('Xenon.administrator.user.create_modal')
+    <a href="#" onclick="jQuery('#modalSiswa').modal('show');" class="btn btn-warning icon">
+      <i class="linecons-graduation-cap"></i><span> Input Siswa</span>
+    </a>
+    @include('Xenon.administrator.siswa.create_modal')
+    <a href="#" onclick="jQuery('#modalGuru').modal('show');" class="btn btn-secondary icon">
+      <i class="linecons-graduation-cap"></i><span> Input Guru</span>
+    </a>
+    @include('Xenon.administrator.guru.create_modal')
   </div>
   
 </div>

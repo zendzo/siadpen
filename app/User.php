@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     public function getFullNameAttribute()
     {
-        return $this->first_name.' '.$this->last_name ? $this->username : $this->email;
+        return $this->profile ? $this->profile->first_name.' '.$this->profile->last_name : $this->username;
     }
 
     public function getAvatarAttribute()
@@ -51,6 +51,11 @@ class User extends Authenticatable
 
     public function profile()
     {
+        if ($this->role_id === 2) {
+            return $this->hasOne(Guru::class);
+        }elseif ($this->role_id === 3) {
+            return $this->hasOne(Siswa::class);
+        }
         return $this->hasOne(UserProfile::class);
     }
 }

@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GendersTableSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(RuangKelasTableSeeder::class);
+        $this->call(GuruSeeder::class);
+        $this->call(SiswaSeeder::class);
     }
 }

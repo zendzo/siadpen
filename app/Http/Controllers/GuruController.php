@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use App\User;
+use App\Guru;
 use App\Ruang;
 use App\Kelas;
 
@@ -17,10 +20,6 @@ class GuruController extends Controller
     public function index()
     {
         $gurus = Guru::all();
-
-        $ruang = Ruang::all();
-
-        $kelas = Kelas::all();
 
         return view($this->viewLocation('administrator.guru.index'), compact(['gurus','ruang','kelas']));
     }
@@ -43,7 +42,49 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('message', $validator->errors()->__toString())
+                    ->with('status','Failed to Save Entry Data !')
+                    ->with('type','error');
+        }
+        try {
+            $user = User::create([
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => $request->password,
+                'role_id' => 2
+            ]);
+
+            $create = $user->profile()->create([
+                'code' => $request->get('code'),
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'birth_date' => $request->get('birth_date'),
+                'gender_id' => $request->get('gender_id'),
+                'phone' => $request->get('phone'),
+                'address' => $request->get('address'),
+                'registered_at' => Carbon::today()->format('d-m-Y'),
+            ]);
+
+            $create->ruang()->attach($request->get('kelas_id'));
+            $create->kelas()->attach($request->get('ruang_id'));
+            
+            if ($create) {
+                return redirect()->back()->with('message', 'New Guru Created!')
+                    ->with('status','Successfully Save Entry Data !')
+                    ->with('type','success');
+            }
+        }catch (\Exception $e){
+            return redirect()->back()->with('message', $e->getMessage())
+                    ->with('status','Failed to Save Entry Data !')
+                    ->with('type','error');
+        }
     }
 
     /**

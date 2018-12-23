@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 use App\Siswa;
 use App\Tingkat;
 use App\Kelas;
 use App\Ruang;
-use Illuminate\Http\Request;
+use App\User;
 
 class SiswaController extends Controller
 {
@@ -44,27 +47,39 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'username' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:6|confirmed',
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
 
-        // if ($validator->fails()){
-        //     return redirect()->back()->with('message', $validator->errors()->__toString())
-        //             ->with('status','Failed to Save Entry Data !')
-        //             ->with('type','error');
-        // }
-        
+        if ($validator->fails()){
+            return redirect()->back()->with('message', $validator->errors()->__toString())
+                    ->with('status','Failed to Save Entry Data !')
+                    ->with('type','error');
+        }
+        // return $request;
         try {
-            $create =  Siswa::create([
+            $user = User::create([
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => $request->password,
+                'role_id' => 3
+            ]);
+
+            $create = $user->profile()->create([
                 'nis' => $request->get('nis'),
-                'name' => $request->get('name'),
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'birth_date' => $request->get('birth_date'),
+                'gender_id' => $request->get('gender_id'),
+                'phone' => $request->get('phone'),
+                'address' => $request->get('address'),
                 'tingkat_id' => $request->get('tingkat_id'),
                 'kelas_id' => $request->get('kelas_id'),
                 'ruang_id' => $request->get('ruang_id'),
-                'registered_at' => $request->get('registered_at'),
-                'biaya' => $request->get('biaya'),
+                'registered_at' => Carbon::today()->format('m-d-Y'),
+                'biaya' => $request->get('biaya')
             ]);
             
             if ($create) {

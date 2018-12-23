@@ -8,13 +8,19 @@ use Carbon\Carbon;
 class Siswa extends Model
 {
     protected $fillable = [
-       'nis',
-       'name',
+        'nis',
+        'first_name',
+        'last_name',
+        'bith_date',
+        'gender_id',
+        'phone',
+        'address',
+        'user_id',
         'tingkat_id',
         'kelas_id',
         'ruang_id',
         'registered_at',
-       'biaya',
+        'biaya'
     ];
 
     protected $dates = ['registered_at'];
@@ -22,6 +28,11 @@ class Siswa extends Model
     public function setRegisteredAtAttribute($value)
 	{
 		$this->attributes['registered_at'] = Carbon::createFromFormat('d-m-Y',$value)->toDateString();
+    }
+
+    public function setBirthDateAttribute($value)
+    {
+        $this->attributes['birth_date'] = Carbon::createFromFormat('d-m-Y',$value)->toDateString();
     }
     
     public function tingkat()
@@ -37,5 +48,15 @@ class Siswa extends Model
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Pembayaran::class);
     }
 }

@@ -33,14 +33,11 @@ class User extends Authenticatable
 
     public function getFullNameAttribute()
     {
-        return $this->profile ? $this->profile->first_name.' '.$this->profile->last_name : $this->username;
+        return $this->profile ? ucfirst($this->profile->first_name).' '.ucfirst($this->profile->last_name) : $this->username;
     }
 
     public function getAvatarAttribute()
 	{
-		if (!is_null($this->profile)) {
-            return $this->profile->avatar;
-        }
        return sprintf('https://www.gravatar.com/avatar/%s?s=100',md5($this->email));
 	}
 

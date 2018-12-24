@@ -39,6 +39,21 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'administrator'], f
 	]);
 });
 
+// Siswa Sections
+Route::group(['prefix'=>'siswa','as'=>'siswa.','middleware'=>'auth'], function(){
+
+	Route::get('/',[
+		'as'	=>	'dashboard',
+		'uses'	=>	'Siswa\SiswaController@index'
+	]);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('siswa/search', 'SearchSiswaController@create')->name('search.form');
+
+Route::post('siswa','SearchSiswaController@search')->name('search.siswa');
+
+Route::get('siswa/{nis}','SearchSiswaController@show')->name('siswa.show');

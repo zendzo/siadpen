@@ -1,1 +1,1 @@
-@include('Xenon.siswa.menu')
+@include('Xenon.member.menu')

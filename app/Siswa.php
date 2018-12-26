@@ -59,4 +59,9 @@ class Siswa extends Model
     {
         return $this->hasMany(Pembayaran::class);
     }
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
 }

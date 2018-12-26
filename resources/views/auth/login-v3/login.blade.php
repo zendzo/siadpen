@@ -4,7 +4,7 @@
 <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
   @csrf
     <span class="login100-form-logo">
-      <i class="zmdi zmdi-landscape"></i>
+      <img style="width: 150px; height: 150px;" class="zmdi zmdi-landscape" src="{{ asset('images/excellent-course.jpeg') }}" alt="" srcset="">
     </span>
 
     <span class="login100-form-title p-b-34 p-t-27">

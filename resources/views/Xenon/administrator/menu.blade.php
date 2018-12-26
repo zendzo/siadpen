@@ -41,10 +41,10 @@
       </li>
     </ul>
 </li>
-<li class="{{ active(['admin.pembayaran.create'],'opened active') }}">
+<li class="{{ active(['admin.pembayaran.create','admin.penilaian.create'],'opened active') }}">
   <a href="#">
-    <i class="linecons-wallet"></i>
-    <span class="title">Transaksi</span>
+    <i class="linecons-params"></i>
+    <span class="title">Entry Data</span>
   </a>
   <ul>
     <li class="{{ active('admin.pembayaran.create') }}">
@@ -52,9 +52,14 @@
         <i class="linecons-money"></i><span class="title"> Pembayaran</span>
       </a>
     </li>
+    <li class="{{ active('admin.penilaian.create') }}">
+      <a href="{{ route('admin.penilaian.create') }}">
+        <i class="linecons-note"></i><span class="title"> Penilaian</span>
+      </a>
+    </li>
   </ul>
 </li>
-<li class="{{ active(['admin.pembayaran.index','admin.laporan.*'],'opened active') }}">
+<li class="{{ active(['admin.pembayaran.index','admin.laporan.*','admin.penilaian.index'],'opened active') }}">
   <a href="dashboard-1.html">
     <i class="linecons-note"></i>
     <span class="title">Laporan</span>
@@ -63,6 +68,11 @@
     <li class="{{ active('admin.pembayaran.index') }}">
       <a href="{{ route('admin.pembayaran.index') }}">
         <i class="fa fa-money"></i><span class="title"> Pembayaran</span>
+      </a>
+    </li>
+    <li class="{{ active('admin.penilaian.index') }}">
+      <a href="{{ route('admin.penilaian.index') }}">
+        <i class="linecons-note"></i><span class="title"> Penilaian</span>
       </a>
     </li>
     <li class="{{ active('admin.laporan.siswa') }}">

@@ -42,6 +42,10 @@
             <i class="fa-briefcase"></i>
             <a href="#">{{$siswa->tingkat->name}}</a>
           </li>
+          <li>
+              <i class="fa-slideshare"></i> Wali Kelas 
+              <a href="#">{{ $siswa->kelas->guru->first()->user->fullName }}</a>
+            </li>
           {{-- <li>
             <i class="fa-graduation-cap"></i>
             University of Bologna
@@ -71,8 +75,9 @@
       
       <div class="col-sm-9">
 
+        @include('Xenon.siswa.payment_table')
         
-        
+        @include('Xenon.siswa.penilaian_table')
       </div>
       
     </div>

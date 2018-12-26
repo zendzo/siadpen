@@ -28,6 +28,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'administrator'], f
 
 	Route::resource('pembayaran', 'PembayaranController');
 
+	Route::resource('penilaian', 'PenilaianController');
+
 	Route::get('laporan/siswa', 'LaporanController@siswa')->name('laporan.siswa');
 
 	Route::get('laporan/guru', 'LaporanController@guru')->name('laporan.guru');

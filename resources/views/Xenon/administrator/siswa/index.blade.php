@@ -36,7 +36,7 @@
           <th>Tingkat</th>
           <th>Kelas</th>
           <th>Ruang</th>
-          <th>Tahun Ajaran</th>
+          <th>Tgl. Lahir</th>
           <th>Biaya</th>
           @if (request()->segment(2) !== 'laporan')
           <th>Aksi</th>

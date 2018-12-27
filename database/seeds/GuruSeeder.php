@@ -27,7 +27,7 @@ class GuruSeeder extends Seeder
             ]);
 
             $profile = $user->profile()->create([
-                'code' => 'NIP 00'.$i.str_random(3),
+                'code' => '000'.$i,
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastNAme,
                 'birth_date' => $today->subYears(rand(10,15))->format('d-m-Y'),

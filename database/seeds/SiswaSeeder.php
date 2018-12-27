@@ -27,7 +27,7 @@ class SiswaSeeder extends Seeder
             ]);
 
             $profile = $siswa->profile()->create([
-                'nis' => 'NIP 00'.$i.str_random(3),
+                'nis' => '000'.$i,
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastName,
                 'birth_date' => $today->subYears(rand(10,15))->format('d-m-Y'),

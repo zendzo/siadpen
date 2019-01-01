@@ -55,13 +55,15 @@
                 <p class="btn btn-xs btn-{{ $payment->confirmed ? 'success' : 'danger' }}"><i class="fa fa-info"></i> {{ $payment->confirmed ? 'success' : 'pending' }}</p>
               </td>
               <td>
+                @if (!$payment->confirmed)
                 <form method="POST" action="{{ route('admin.pembayaran.update',$payment->id) }}" accept-charset="UTF-8" style="display:inline">
-                    @method('PATCH')
-                    @csrf
-                    <button type="submit" class="btn btn-icon btn-success btn-xs">
-                       <i class="fa fa-check"></i> Konfirmasi
-                    </button>
-                 </form>
+                  @method('PATCH')
+                  @csrf
+                  <button type="submit" class="btn btn-icon btn-success btn-xs">
+                     <i class="fa fa-check"></i> Konfirmasi
+                  </button>
+               </form>
+                @endif
               </td>
             </tr>
         @endforeach

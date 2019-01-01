@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pembayaran;
 use Illuminate\Http\Request;
 use App\Siswa;
+use App\Notifications\SendPeymentConfirmation;
 
 class PembayaranController extends Controller
 {
@@ -95,9 +96,12 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, Pembayaran $pembayaran)
     {
+        $object = $pembayaran;
         try{
             $pembayaran->confirmed = true;
             $pembayaran->save();
+            
+            $object->siswa->user->notify(new SendPeymentConfirmation($object));
 
             return redirect()->back()
                     ->with('message', 'Data Telah Tersimpan!')
@@ -105,7 +109,7 @@ class PembayaranController extends Controller
                     ->with('type','success');
         }catch(\Exception $e){
             return redirect()->back()
-                    ->with('message', $e->getMessage()())
+                    ->with('message', $e->getMessage())
                     ->with('status','error')
                     ->with('type','error');
         }

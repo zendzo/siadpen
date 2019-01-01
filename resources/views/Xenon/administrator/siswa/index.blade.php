@@ -49,7 +49,7 @@
             <tr>
               <td>{{ $siswa->id }}</td>
               <td>{{ $siswa->nis }}</td>
-              <td>{{ $siswa->user->fullName }}</td>
+              <td><a href="{{ route('admin.siswa.show', $siswa->id) }}">{{ $siswa->user->fullName }}</a></td>
               <td>{{ $siswa->tingkat->name }}</td>
               <td>{{ $siswa->kelas->name }}</td>
               <td>{{ $siswa->ruang->name }}</td>

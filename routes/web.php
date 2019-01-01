@@ -48,6 +48,21 @@ Route::group(['prefix'=>'siswa','as'=>'siswa.','middleware'=>'auth'], function()
 		'as'	=>	'dashboard',
 		'uses'	=>	'Siswa\SiswaController@index'
 	]);
+
+	Route::get('profile','Siswa\SiswaController@profile')->name('profile');
+
+	Route::post('profile','Siswa\SiswaController@profileStore')->name('profile.store');
+
+	Route::get('profile/edit/{nis}','Siswa\SiswaController@profileEdit')->name('profile.edit');
+
+	Route::patch('profile/update/{siswa}','Siswa\SiswaController@profileUpdate')->name('profile.update');
+
+	Route::get('pembayaran/create', function(){
+		return view('Xenon.siswa.pembayaran.create');
+	})->name('pembayaran');
+
+	Route::post('pembayaran','Siswa\PembayaranController@store')->name('pembayaran.store');
+
 });
 
 Auth::routes();
@@ -59,3 +74,4 @@ Route::get('siswa/search', 'SearchSiswaController@create')->name('search.form');
 Route::post('siswa','SearchSiswaController@search')->name('search.siswa');
 
 Route::get('siswa/{nis}','SearchSiswaController@show')->name('siswa.show');
+

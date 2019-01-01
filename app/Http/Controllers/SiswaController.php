@@ -102,7 +102,7 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        //
+        return view($this->viewLocation('administrator.siswa.show'), compact(['siswa']));
     }
 
     /**
